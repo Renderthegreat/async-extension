@@ -94,8 +94,8 @@ namespace Asynchronous {
     };
 };
 const promises: Asynchronous.Promise<any>[] = [];
+const hackablePromises: { resolve: (value: any) => void, reject: (value: any) => void }[] = [];
 namespace Asynchronous {
-    //% blockId=create_promise block="Create promise with executor %executor"
     export function createPromise<T>(target: Asynchronous.Executor<T>) {
         const promise = new Asynchronous.Promise(target);
         promises.push(promise);
@@ -109,10 +109,20 @@ namespace Asynchronous {
     export function onPromiseReject<T>(promiseId: number, rejectCallback: Asynchronous.CatchHandler<any>) {
         promises[promiseId].catch(rejectCallback);
     };
+    //% block="Resolve promise $promiseId with %value"
+    export function resolve(promiseId: number, value: any) {
+        hackablePromises[promiseId].resolve(value);
+    };
+    //% block="Reject promise $promiseId with %value"
+    export function reject(promiseId: number, value: any) {
+        hackablePromises[promiseId].reject(value);
+    };
     //% block="Wrapper $promiseId"
     //% draggableParameters
     //% handlerStatement
     export function wrapper(promiseId: number, callback: (promiseId: number) => void) {
-
+        createPromise((resolve: (value: any) => void, reject: (value: any) => void) => {
+            hackablePromises.push({ resolve, reject });
+        });
     };
 };
