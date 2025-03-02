@@ -94,6 +94,7 @@ namespace Asynchronous {
     };
 };
 const promises: Asynchronous.Promise<any>[] = [];
+const locks: SparseArray<any> = [];
 const hackablePromises: { resolve: (value: any) => void, reject: (value: any) => void, data: any }[] = [];
 namespace Asynchronous {
     //% blockId=create_promise block="Create a promise with %name"
@@ -117,13 +118,22 @@ namespace Asynchronous {
     export function onPromiseReject<T>(promiseId: number, rejectCallback: (data: any) => void) {
         promises[promiseId].catch(rejectCallback);
     };
-    //% block="Resolve promise $promiseId with %value"
+    //% block="Resolve promise %promiseId with %value"
     export function resolve(promiseId: number, value: any) {
         hackablePromises[promiseId].resolve(value);
     };
-    //% block="Reject promise $promiseId with %value"
+    //% block="Reject promise %promiseId with %value"
     export function reject(promiseId: number, value: any) {
         hackablePromises[promiseId].reject(value);
+    };
+    //% block="Block %key"
+    export function block(key: string) {
+        locks[key as any] = false;
+        while (true) {
+            if (locks[key as any]) {
+                break;
+            };
+        };
     };
     //% block="Promise"
     //% draggableParameters
