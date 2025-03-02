@@ -120,7 +120,7 @@ namespace Asynchronous {
     //% block="Wrapper $promiseId"
     //% draggableParameters
     //% handlerStatement
-    export function wrapper(promiseId: number, callback: (promiseId: number) => void) {
+    export function wrapper(callback: (promiseId: number) => void) {
         createPromise((resolve: (value: any) => void, reject: (value: any) => void) => {
             hackablePromises.push({ resolve, reject });
         });
