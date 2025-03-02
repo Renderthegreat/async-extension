@@ -109,10 +109,10 @@ namespace Asynchronous {
     export function onPromiseReject<T>(promiseId: number, rejectCallback: Asynchronous.CatchHandler<any>) {
         promises[promiseId].catch(rejectCallback);
     };
-    //% block="Wrapper $wrapped"
+    //% block="Wrapper $promiseId"
     //% draggableParameters
     //% handlerStatement
-    export function wrapper(promiseId: number, callback: () => void) {
-        
+    export function wrapper(promiseId: number, callback: (promiseId: number) => void) {
+
     };
 };
