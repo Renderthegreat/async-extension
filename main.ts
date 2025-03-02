@@ -125,7 +125,7 @@ namespace Asynchronous {
     export function reject(promiseId: number, value: any) {
         hackablePromises[promiseId].reject(value);
     };
-    //% block="Wrapper"
+    //% block="Promise"
     //% draggableParameters
     //% handlerStatement
     export function wrapper(callback: () => void) {
