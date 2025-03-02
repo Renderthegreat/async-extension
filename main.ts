@@ -94,7 +94,7 @@ namespace Asynchronous {
     };
 };
 const promises: Asynchronous.Promise<any>[] = [];
-const hackablePromises: { resolve: (value: any) => void, reject: (value: any) => void }[] = [];
+const hackablePromises: { resolve: (value: any) => void, reject: (value: any) => void, data: any }[] = [];
 namespace Asynchronous {
     //% blockId=create_promise block="Create a promise with %name"
     export function readyPromise(name: string) {
@@ -106,11 +106,11 @@ namespace Asynchronous {
         return promises.length - 1;
     };
     //% blockId=on_promise_resolve block="Set a callback %callback for promise %promise resolve"
-    export function onPromiseResolve<T>(promiseId: number, resolveCallback: Asynchronous.ThenHandler<any, T>) {
+    export function onPromiseResolve<T>(promiseId: number, resolveCallback: (data: any) => void) {
         promises[promiseId].then(resolveCallback);
     };
     //% blockId=on_promise_reject block="Set a callback %callback for promise %promise reject"
-    export function onPromiseReject<T>(promiseId: number, rejectCallback: Asynchronous.CatchHandler<any>) {
+    export function onPromiseReject<T>(promiseId: number, rejectCallback: (data: any) => void) {
         promises[promiseId].catch(rejectCallback);
     };
     //% block="Resolve promise $promiseId with %value"
@@ -121,12 +121,12 @@ namespace Asynchronous {
     export function reject(promiseId: number, value: any) {
         hackablePromises[promiseId].reject(value);
     };
-    //% block="Wrapper $promiseId"
+    //% block="Wrapper %promiseId"
     //% draggableParameters
     //% handlerStatement
     export function wrapper(callback: (promiseId: number) => void) {
         createPromise((resolve: (value: any) => void, reject: (value: any) => void) => {
-            hackablePromises.push({ resolve, reject });
+            hackablePromises.push({ resolve, reject, data: null });
         });
     };
 };
