@@ -95,13 +95,6 @@ namespace Asynchronous {
 };
 
 namespace Asynchronous {
-    //% emitAsConstant
-    export enum CompleteOperation {
-        //% block="Resolve"
-        Resolve,
-        //% block="Reject"
-        Reject,
-    };
     //% blockId=create_promise block="Create promise with executor %executor"
     export function createPromise<T>(target: Asynchronous.Executor<T>) {
         return new Asynchronous.Promise(target);
@@ -114,8 +107,8 @@ namespace Asynchronous {
     export function onPromiseReject<T>(promise: Asynchronous.Promise<T>, rejectCallback: Asynchronous.CatchHandler<any>) {
         promise.catch(rejectCallback);
     };
-    //% blockId=complete="Complete a promise %parray with operation %operation, and data %data"
-    export function complete<T>(parray: [Asynchronous.ThenHandler<any, T>, Asynchronous.CatchHandler<any>], operation: Asynchronous.CompleteOperation, data: any) {
-        parray[operation](data);
+    //% blockId=wrapper block="Wrapper"
+    export function wrapper<T>(resolve: Asynchronous.ThenHandler<any, T>, reject: Asynchronous.CatchHandler<any>, wrapped: () => void) {
+        
     };
 };
