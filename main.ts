@@ -115,7 +115,7 @@ namespace Asynchronous {
         promise.catch(rejectCallback);
     };
     //% blockId=complete="Complete a promise %parray with operation %operation, and data %data"
-    export function complete<T>(parray: [Asynchronous.ThenHandler<any, T>, Asynchronous.CatchHandler<any>], operation: Asynchronous.CompleteOperation, data: T) {
+    export function complete<T>(parray: [Asynchronous.ThenHandler<any, T>, Asynchronous.CatchHandler<any>], operation: Asynchronous.CompleteOperation, data: any) {
         parray[operation](data);
     };
 };
