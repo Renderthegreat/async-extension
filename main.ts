@@ -99,11 +99,11 @@ namespace Asynchronous {
     export function createPromise<T>(target: Asynchronous.Executor<T>) {
         return new Asynchronous.Promise(target);
     };
-    //% blockId=on_promise_resolve block="Set a callback %callback for %promise resolve"
+    //% blockId=on_promise_resolve block="Set a callback %callback for promise %promise resolve"
     export function onPromiseResolve<T>(promise: Asynchronous.Promise<T>, resolveCallback: Asynchronous.ThenHandler<any, T>) {
         promise.then(resolveCallback);
     };
-    //% blockId=on_promise_reject block="Set a callback %callback for a %promise reject"
+    //% blockId=on_promise_reject block="Set a callback %callback for promise %promise reject"
     export function onPromiseReject<T>(promise: Asynchronous.Promise<T>, rejectCallback: Asynchronous.CatchHandler<any>) {
         promise.catch(rejectCallback);
     };
