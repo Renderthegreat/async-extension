@@ -108,7 +108,7 @@ namespace Asynchronous {
         promise.catch(rejectCallback);
     };
     //% blockId=wrapper block="Wrapper"
-    export function wrapper<T>(resolve: Asynchronous.ThenHandler<any, T>, reject: Asynchronous.CatchHandler<any>, wrapped: () => void) {
+    export function wrapper(wrapped: Array<any>) {
         
     };
 };
