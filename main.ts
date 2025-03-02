@@ -1,8 +1,7 @@
 namespace Asynchronous {
-    type Executor<T> = (resolve: (value: T) => void, reject: (reason?: any) => void) => void;
-    type ThenHandler<T, U> = (value: T) => U | Promise<U>;
-    type CatchHandler<U> = (reason?: any) => U | Promise<U>;
-    //% blockId=create_promise block="Create promise with executor %executor"
+    export type Executor<T> = (resolve: (value: T) => void, reject: (reason?: any) => void) => void;
+    export type ThenHandler<T, U> = (value: T) => U | Promise<U>;
+    export type CatchHandler<U> = (reason?: any) => U | Promise<U>;
     export class Promise<T> {
         /**
         * Runs code asynchronously, and returns a result
@@ -93,4 +92,19 @@ namespace Asynchronous {
         private thenHandlers: ThenHandler<T, any>[] = [];
         private catchHandler?: CatchHandler<any>;
     };
-}
+};
+
+namespace Asynchronous {
+    //% blockId=create_promise block="Create promise with executor %executor"
+    export function createPromise<T>(target: Asynchronous.Executor<T>) {
+        return new Asynchronous.Promise(target);
+    };
+    //% blockId=on_promise_resolve block="Set a callback %callback for a promise resolve"
+    export function onPromiseResolve<T>(promise: Asynchronous.Promise<T>, resolveCallback: Asynchronous.ThenHandler<any, T>) {
+        promise.then(resolveCallback);
+    };
+    //% blockId=on_promise_reject block="Set a callback %callback for a promise reject"
+    export function onPromiseReject<T>(promise: Asynchronous.Promise<T>, rejectCallback: Asynchronous.CatchHandler<any>) {
+        promise.catch(rejectCallback);
+    };
+};
