@@ -126,23 +126,6 @@ namespace Asynchronous {
     export function reject(promiseId: number, value: any) {
         hackablePromises[promiseId].reject(value);
     };
-    //% block="Create lock"
-    export function createLock() {
-        return Math.round(Math.random() * 10000);
-    }; 
-    //% block="Block %key"
-    export function block(key: number) {
-        locks[key] = false;
-        while (true) {
-            if (locks[key]) {
-                break;
-            };
-        };
-    };
-    //% block="Unblock %key"
-    export function unblock(key: number) {
-        locks[key] = true;
-    };
     //% block="Promise"
     //% draggableParameters
     //% handlerStatement
