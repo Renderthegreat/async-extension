@@ -109,6 +109,7 @@ namespace Asynchronous {
     };
     //% block="Wrapper $wrapped"
     //% draggableParameters
+    //% handlerStatement
     export function wrapper(wrapped: [any]) {
         
     };
