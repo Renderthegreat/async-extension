@@ -105,11 +105,15 @@ namespace Asynchronous {
         promises.push(promise);
         return promises.length - 1;
     };
-    //% blockId=on_promise_resolve block="Set a callback %callback for promise %promise resolve"
+    //% blockId=on_promise_resolve block="Set a callback for promise %promise resolve"
+    //% draggableParameters
+    //% handlerStatement
     export function onPromiseResolve<T>(promiseId: number, resolveCallback: (data: any) => void) {
         promises[promiseId].then(resolveCallback);
     };
-    //% blockId=on_promise_reject block="Set a callback %callback for promise %promise reject"
+    //% blockId=on_promise_reject block="Set a callback for promise %promise reject"
+    //% draggableParameters
+    //% handlerStatement
     export function onPromiseReject<T>(promiseId: number, rejectCallback: (data: any) => void) {
         promises[promiseId].catch(rejectCallback);
     };
