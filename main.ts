@@ -108,7 +108,7 @@ namespace Asynchronous {
         promise.catch(rejectCallback);
     };
     //% blockId=wrapper block="Wrapper"
-    export function wrapper(wrapped: Array<any>) {
+    export function wrapper(wrapped: [any]) {
         
     };
 };
