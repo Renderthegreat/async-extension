@@ -128,7 +128,7 @@ namespace Asynchronous {
     };
     //% block="Create lock"
     export function createLock() {
-        return Math.random();
+        return Math.round(Math.random() * 10000);
     }; 
     //% block="Block %key"
     export function block(key: number) {
