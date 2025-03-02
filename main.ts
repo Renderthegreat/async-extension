@@ -93,24 +93,26 @@ namespace Asynchronous {
         private catchHandler?: CatchHandler<any>;
     };
 };
-
+const promises: Asynchronous.Promise<any>[] = [];
 namespace Asynchronous {
     //% blockId=create_promise block="Create promise with executor %executor"
     export function createPromise<T>(target: Asynchronous.Executor<T>) {
-        return new Asynchronous.Promise(target);
+        const promise = new Asynchronous.Promise(target);
+        promises.push(promise);
+        return promises.length - 1;
     };
     //% blockId=on_promise_resolve block="Set a callback %callback for promise %promise resolve"
-    export function onPromiseResolve<T>(promise: Asynchronous.Promise<T>, resolveCallback: Asynchronous.ThenHandler<any, T>) {
-        promise.then(resolveCallback);
+    export function onPromiseResolve<T>(promiseId: number, resolveCallback: Asynchronous.ThenHandler<any, T>) {
+        promises[promiseId].then(resolveCallback);
     };
     //% blockId=on_promise_reject block="Set a callback %callback for promise %promise reject"
-    export function onPromiseReject<T>(promise: Asynchronous.Promise<T>, rejectCallback: Asynchronous.CatchHandler<any>) {
-        promise.catch(rejectCallback);
+    export function onPromiseReject<T>(promiseId: number, rejectCallback: Asynchronous.CatchHandler<any>) {
+        promises[promiseId].catch(rejectCallback);
     };
     //% block="Wrapper $wrapped"
     //% draggableParameters
     //% handlerStatement
-    export function wrapper(wrapped: [any]) {
+    export function wrapper(promiseId: number, callback: () => void) {
         
     };
 };
