@@ -95,6 +95,7 @@ namespace Asynchronous {
 };
 
 namespace Asynchronous {
+    //% emitAsConstant
     export enum CompleteOperation {
         //% block="Resolve"
         Resolve,
