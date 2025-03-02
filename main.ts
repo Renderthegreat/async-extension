@@ -94,7 +94,7 @@ namespace Asynchronous {
     };
 };
 const promises: Asynchronous.Promise<any>[] = [];
-const locks: Array<number> = [];
+const locks: Array<Boolean> = [];
 const hackablePromises: { resolve: (value: any) => void, reject: (value: any) => void, data: any }[] = [];
 namespace Asynchronous {
     //% blockId=create_promise block="Create a promise with %name"
@@ -134,7 +134,7 @@ namespace Asynchronous {
     export function block(key: number) {
         locks[key] = false;
         while (true) {
-            if (locks[key as any]) {
+            if (locks[key]) {
                 break;
             };
         };
