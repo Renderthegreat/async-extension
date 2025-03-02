@@ -98,7 +98,7 @@ const hackablePromises: { resolve: (value: any) => void, reject: (value: any) =>
 namespace Asynchronous {
     //% blockId=create_promise block="Create a promise with %name"
     export function readyPromise(name: string) {
-        return promises.length - 1;
+        return promises.length;
     };
     export function createPromise<T>(target: Asynchronous.Executor<T>) {
         const promise = new Asynchronous.Promise(target);
