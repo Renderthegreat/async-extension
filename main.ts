@@ -96,6 +96,10 @@ namespace Asynchronous {
 const promises: Asynchronous.Promise<any>[] = [];
 const hackablePromises: { resolve: (value: any) => void, reject: (value: any) => void }[] = [];
 namespace Asynchronous {
+    //% blockId=create_promise block="Create a promise with %name"
+    export function readyPromise(name: string) {
+        return promises.length - 1;
+    };
     export function createPromise<T>(target: Asynchronous.Executor<T>) {
         const promise = new Asynchronous.Promise(target);
         promises.push(promise);
