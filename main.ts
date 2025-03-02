@@ -107,7 +107,8 @@ namespace Asynchronous {
     export function onPromiseReject<T>(promise: Asynchronous.Promise<T>, rejectCallback: Asynchronous.CatchHandler<any>) {
         promise.catch(rejectCallback);
     };
-    //% blockId=wrapper block="Wrapper"
+    //% block="Wrapper $wrapped"
+    //% draggableParameters
     export function wrapper(wrapped: [any]) {
         
     };
