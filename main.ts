@@ -131,7 +131,7 @@ namespace Asynchronous {
     export function wrapper(callback: (promiseId: number) => void) {
         createPromise((resolve: (value: any) => void, reject: (value: any) => void) => {
             hackablePromises.push({ resolve, reject, data: null });
-            callback();
+            callback(promises.length - 1);
         });
     };
 };
