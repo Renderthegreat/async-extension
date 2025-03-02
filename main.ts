@@ -135,6 +135,10 @@ namespace Asynchronous {
             };
         };
     };
+    //% block="Unblock %key"
+    export function unblock(key: string) {
+        locks[key as any] = true;
+    };
     //% block="Promise"
     //% draggableParameters
     //% handlerStatement
